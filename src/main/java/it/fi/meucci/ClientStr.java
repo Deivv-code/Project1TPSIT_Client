@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class ClientStr {
     String name_server = "localhost";
@@ -16,8 +17,10 @@ public class ClientStr {
     DataOutputStream output;
     BufferedReader input;
 
+
     public Socket connect()
     {
+
         try {
             keyboard = new BufferedReader(new InputStreamReader(System.in));
             mysocket = new Socket(name_server, serverport);
@@ -53,7 +56,12 @@ public class ClientStr {
                 mysocket.close();
                 break;
             }
-            
+            else if(user.equals("POWER OFF"))
+            {
+                System.out.println("CLIENT : all socket closed");
+                mysocket.close();
+                break;
+            }
 
         } catch (Exception e) {
             // TODO: handle exception
